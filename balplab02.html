@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+
+<body onload="brython(1)">
+
+<label id="name"><h2>BalPLab</h2></label>
+<label id="info"><h3>Balqui's Palindroms Lab - does not work yet!</h3></label>
+<br>
+<br>
+<label id="diac">No uses tildes. Accent marks unsupported as yet. Sorry.</label>
+<br>
+<br>
+<label id="diac">No hagas click con el ratón. Mouse clicking unsupported as yet. Sorry.</label>
+<br>
+<br>
+<label id="mo_i">Cut and paste to your text editor to finish up when done.</label>
+<br>
+<br>
+<label id="mo_s">Cuando estés, corta y pega en tu editor de textos para los retoques finales.</label>
+<br>
+<br>
+<br>
+<br>
+<textarea id="work" autocomplete="off" placeholder="Play with letters here, juega aqui con letras." cols = 50></textarea>
+<br>
+<br>
+<button id="back">Back</button>
+<button id="about">About...</button>
+<br>
+<textarea id="extr" autocomplete="off" placeholder="extr" cols = 20></textarea>
+
+
+<script type="text/python">
+from browser import document, alert # Brython in-browser support
+from chann import Chann
+
+about_str = """BalPLab:
+
+Using Brython to help the user to invent palindroms.
+A looooong-dreamed-of little project.
+
+Currently on Brython-3.8.9.
+
+José L Balcázar (balqui at GitHub), summer 2020"""
+
+arrow_codes = list(range(37, 41))
+
+chnn = Chann()
+
+def about(ev):
+    alert(about_str)
+
+def refresh(ev):
+    pass
+    # ~ curr = document["work"].value
+    # ~ for c in reversed(curr):
+        # ~ curr += c
+    # ~ document["work"].value = curr + curr
+    
+# ~ def where(ev):
+    # ~ alert("Clicked at clientX:" + str(ev.clientX))
+
+def back(ev):
+    alert("Back not yet implemented. Sorry.")
+
+def handlekey(ev):
+    alert(5*str(ev.keyCode))
+    if ev.keyCode == 8:
+        alert("Deletion unsupported as yet.")
+        # ~ document["work"].value = chnn.st.writ()
+        alert("!!!" + chnn.st.writ())
+    elif ev.keyCode in arrow_codes:
+        alert("moving" + str(ev.keyCode))
+        r = chnn.move(ev.keyCode)
+        alert(r + "|" + r)
+    else:
+        alert("ON ELSE " + chr(ev.keyCode))
+        r = chnn.put(chr(ev.keyCode))
+        document["extr"].value = chnn.st.writ()
+        alert(r + "," + r)
+        # ~ document["work"].value = chnn.st.writ()
+        # ~ alert(chnn.st.writ())
+    
+def mouseused(ev):
+    alert("Used the mouse." + chnn.wh())
+
+# main program: 
+# bind buttons to processes and leave interaction for Brython to care for.
+
+document["work"].bind('click', mouseused)
+document["work"].bind('keydown', handlekey)
+document['about'].bind('click', about)
+# ~ document['refr'].bind('click', refresh)
+document['back'].bind('click', back)
+
+</script>
+</body>
+
+</html>
+

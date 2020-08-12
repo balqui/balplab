@@ -47,6 +47,7 @@ class Store(dict):
         else:
             "flag untreated case at some point"
             pass
+        return self.writ()
 
     def _shift(self, pos):
         self.sz += 1
