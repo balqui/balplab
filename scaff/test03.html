@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+
+<body onload="brython(1)">
+
+<button id="about">About...</button>
+<label id="info">Just start writing and refresh whenever convenient:</label>
+<br>
+<input id="main" autocomplete="off" placeholder="initial placeholder">
+<input id="aux" autocomplete="off" placeholder="aux">
+<button id="refr">Refresh</button>
+
+<script type="text/python" id="script0">
+from browser import document, alert
+
+about_str = """Using Brython to help the user to invent palindroms.
+A looooong-dreamed-of little project.
+
+José L Balcázar (balqui at GitHub), 2020"""
+
+def about(ev):
+    alert(about_str)
+
+def refresh(ev):
+    curr = document["main"].value
+    for c in reversed(curr):
+        curr += c
+    document["main"].value = curr
+
+# ~ def about(ev):
+    # ~ alert(about_str)
+    # ~ document["aux"].value = "at hello"
+
+# ~ document["about"].bind("click", about)
+
+# ~ def refresh(ev):
+    # ~ alert(about_str)
+    # ~ document["aux"].value = "at refresh"
+    # ~ curr = document["main"].value
+    # ~ a = list(curr)
+    # ~ a.reverse()
+    # ~ document["main"].value = curr + curr # str(a)
+
+document['about'].bind('click', about)
+document['refr'].bind('click', refresh)
+
+# ~ document["refr"].bind("click", refresh)
+</script>
+</body>
+
+</html>
+
