@@ -10,7 +10,7 @@ class Store(dict):
     def __init__(self):
         super().__init__()
         self.sz = 0
-    
+
     def put(self, pos, ch):
         """center addition: allowed unduplicated if old length 
         is even, and also if old length is odd - then the new 
@@ -49,28 +49,41 @@ class Store(dict):
             pass
         return self.writ()
 
+    def put2(self, pos, ch):
+        if 2*pos > self.sz: 
+            "current arith needs reference in first half"
+            pos = self.sz - pos
+        self._shift(pos)
+        self[pos] = [ch, ch]
+        self._shift(self.sz - pos)
+        self[self.sz - pos - 1] = [ch, ch]
+        return self.writ()
+
     def _shift(self, pos):
         self.sz += 1
         for i in reversed(range(pos+1, self.sz)):
             self[i] = self[i-1]
         self[pos] = '_'
-            
+
     def _dump(self):
         r = ''
         for i in range(self.sz):
             r += self[i][0]
         return r
-    
+
     def writ(self):
         r = ''
         for i in range(self.sz):
             r += self[i][1]
         return r
-    
+
     def _p(self):
         print('===')
         print('|' + s.dump() + '| , size: ' + str(self.sz))
         print('===')
+
+    def g(self):
+        return ':::' + str(self.sz)
 
 
 

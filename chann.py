@@ -28,10 +28,12 @@ class Chann:
             self.p = self.st.sz
         return str(q) + " > " + str(self.p)
 
-    def put(self, ch):
-        w = self.st.put(self.p, ch)
+    def pt(self, ch, kk):
+        # ~ f("enter put " + self.st.put(self.p, ch))
+        kk = self.st.put2(self.p, ch)
         self.p += 1
-        return str(self.p) + ", " + w + "; " + self.st.writ()
+        # ~ return str(self.p) + ", " + self.st.writ()
+        return kk
 
     def wh(self):
         return str(self.p)
@@ -39,12 +41,12 @@ class Chann:
 if __name__ == "__main__":
     ch = Chann()
     for c in "aeiou":
-        ch.put(c)
+        print("put", c, ch.pt(c))
         print(ch.st.writ())
     print("p: ", ch.p)
-    ch.move(37)
-    ch.move(37)
+    print("move", ch.move(37))
+    print("move", ch.move(37))
     print("p: ", ch.p)
-    ch.put('w')
+    print("put w", ch.pt('w'))
     print(ch.st.writ())
     

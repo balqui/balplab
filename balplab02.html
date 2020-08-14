@@ -76,16 +76,16 @@ def handlekey(ev):
         # ~ document["work"].value = chnn.st.writ()
         alert("!!!" + chnn.st.writ())
     elif ev.keyCode in arrow_codes:
-        alert("moving" + str(ev.keyCode))
         r = chnn.move(ev.keyCode)
-        alert(r + "|" + r)
+        alert("moving: " + str(ev.keyCode) + ", " + r)
     else:
+        document["extr"].value = chr(ev.keyCode) # chnn.st.writ()
         alert("ON ELSE " + chr(ev.keyCode))
-        r = chnn.put(chr(ev.keyCode))
-        document["extr"].value = chnn.st.writ()
+        r = chnn.pt(chr(ev.keyCode))
+        document["extr"].value = "===" + chr(ev.keyCode) # chnn.st.writ()
         alert(r + "," + r)
-        # ~ document["work"].value = chnn.st.writ()
-        # ~ alert(chnn.st.writ())
+        document["work"].value = r
+        alert(chnn.st.writ())
     
 def mouseused(ev):
     alert("Used the mouse." + chnn.wh())
