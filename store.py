@@ -49,16 +49,6 @@ class Store(dict):
             pass
         return self.writ()
 
-    def put2(self, pos, ch):
-        if 2*pos > self.sz: 
-            "current arith needs reference in first half"
-            pos = self.sz - pos
-        self._shift(pos)
-        self[pos] = [ch, ch]
-        self._shift(self.sz - pos)
-        self[self.sz - pos - 1] = [ch, ch]
-        return self.writ()
-
     def _shift(self, pos):
         self.sz += 1
         for i in reversed(range(pos+1, self.sz)):
