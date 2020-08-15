@@ -15,17 +15,19 @@
 <br>
 <label id="mo_s">Reglas: (1) No uses tildes. (2) No muevas el cursor 
 del ratón ni hagas click. (3) Usa las teclas '<' y '>' para moverte 
-por el texto a medio construir. (4) Empieza en minúsculas; podrás 
-pasar una letra a mayúscula después. (5) También puedes insertar 
-espacios y puntuación. (6) Deja los retoques (acentos...) para el final, 
-en un editor de texto aparte al que copies el resultado.</label>
+por el texto a medio construir; '=' borra hacia la izquierda, pero
+nunca borres todo. (4) Empieza en minúsculas; podrás pasar una letra 
+a mayúscula después. (5) También puedes insertar espacios y puntuación. 
+(6) Deja los retoques (acentos...) para el final, en un editor de texto 
+aparte al que copies el resultado.</label>
 <br>
 <br>
 <label id="mo_i">Rules: (1) Accent marks unsupported. (2) Mouse moving 
 or clicking unsupported. (3) Use keys '<' and '>' to move around the 
-half-baked text. (4) Start in lower case; changing into upper case
-later is supported. (5) Spacing and punctuation are also supported.
-(6) Cut and paste to your text editor to finish up when done.</label>
+half-baked text, '=' to delete to the left; but never delete everything. 
+(4) Start in lower case; changing into upper case later is supported. 
+(5) Spacing and punctuation are also supported. (6) Cut and paste to 
+your text editor to finish up when done.</label>
 <br>
 <br>
 <textarea disabled id="out" autocomplete="off" 
@@ -33,12 +35,14 @@ placeholder="Teclea sin más y aquí irás viendo el resultado, result shows up 
 cols=60></textarea>
 <br>
 <br>
+<button id="done">Done</button>
 <button id="back">Back</button>
 <button id="about">About...</button>
 <br>
 <br>
-<label id="ignore">Please ignore this little box and whatever happens inside it: </label>
-<textarea autofocus id="in" autocomplete="off" col=3 rows=1></textarea>
+<label id="ignore">Please ignore this little box and whatever happens inside it, no 
+hagas caso de esta cajita ni de lo que pasa dentro: </label>
+<input type="text" autofocus id="in">
 
 
 <script type="text/python">
@@ -66,17 +70,21 @@ def about(ev):
 def back(ev):
     alert("Back not yet implemented. Sorry.")
 
+def done(ev):
+    alert(st.writ(False))
+
 def handlekey(ev):
-    """Handle keypress event (earlier versions used
+    """Handle keypress event; earlier versions used
     keydown events to grab the arrows but then other
     things were grabbed in the meantime like caps or
     tildes. By the way, tildes are as yet unsolved.
     """
     # ~ alert(str(ev.keyCode) + " at handle key by keypress")
-    if ev.keyCode == 8: 
-        "still unfinished"
+    if ev.keyCode == 61: 
+        "did not manage to use the DEL key"
         st.delete()
-    if ev.keyCode == 60: 
+        document["out"].value = st.writ()
+    elif ev.keyCode == 60: 
         st.move(-1)
         document["out"].value = st.writ()
     elif ev.keyCode == 62: 
@@ -109,6 +117,7 @@ document["in"].bind('click', mouseused)
 document["in"].bind('keypress', handlekey)
 document['about'].bind('click', about)
 document['back'].bind('click', back)
+document['done'].bind('click', done)
 
 
 

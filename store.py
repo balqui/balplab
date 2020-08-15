@@ -30,9 +30,9 @@ class Store(dict):
         central one is put additionally to the ch given
         """
         pos = self.p
-        if ch.isupper() and pos < self.sz and self[pos][0] == ch.lower():
+        if ch.isupper() and pos > 0 and self[pos-1][0] == ch.lower():
             "change to upper, preserve punctuation"
-            self[pos][1] = ch + self[pos][1][1:]
+            self[pos-1][1] = ch + self[pos-1][1][1:]
         elif not ch.isalnum() and pos > 0:
             "spaces and punctuation"
             self[pos - 1][1] += ch.strip(' _') + ' '
@@ -66,7 +66,7 @@ class Store(dict):
             self._shift(self.sz - pos)
             self[self.sz - pos - 1] = [ch, ch]
         else:
-            "flag untreated case at some point"
+            "flag untreated case maybe at some point"
             pass
         return self.writ()
 
@@ -115,13 +115,13 @@ class Store(dict):
             r += self[i][0]
         return r
 
-    def writ(self):
-        "must decide how to mark the current change position"
+    def writ(self, mark=True):
+        "may mark the current change position"
         r = ''
         for i in range(self.sz):
-            if i == self.p: r += '|'
+            if i == self.p and mark: r += '|'
             r += self[i][1]
-        if self.sz == self.p: r += '|'
+        if self.sz == self.p and mark: r += '|'
         return r
 
     def _p(self):
