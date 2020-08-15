@@ -13,11 +13,11 @@
 <label id="info"><h3>Balqui's Palindroms Lab</h3></label>
 <br>
 <br>
-<label id="mo_s">Reglas: (1) No uses tildes. (2) No muevas el cursor del ratón
-ni hagas click. (3) Usa las teclas '<' y '>' para moverte por el texto
-a medio construir. (4) Empieza en minúsculas; podrás pasar una letra a
-mayúscula después. (5) También puedes insertar espacios y puntuación.
-(6) Deja los retoques (acentos...) para el final, 
+<label id="mo_s">Reglas: (1) No uses tildes. (2) No muevas el cursor 
+del ratón ni hagas click. (3) Usa las teclas '<' y '>' para moverte 
+por el texto a medio construir. (4) Empieza en minúsculas; podrás 
+pasar una letra a mayúscula después. (5) También puedes insertar 
+espacios y puntuación. (6) Deja los retoques (acentos...) para el final, 
 en un editor de texto aparte al que copies el resultado.</label>
 <br>
 <br>
@@ -74,8 +74,8 @@ def handlekey(ev):
     """
     # ~ alert(str(ev.keyCode) + " at handle key by keypress")
     if ev.keyCode == 8: 
-        "silently do nothing for the time being"
-        return
+        "still unfinished"
+        st.delete()
     if ev.keyCode == 60: 
         st.move(-1)
         document["out"].value = st.writ()

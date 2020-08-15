@@ -70,6 +70,28 @@ class Store(dict):
             pass
         return self.writ()
 
+    def delete(self):
+        "delete whatever is to the left of the current position"
+        if self.p == 0:
+            "silently do nothing"
+            return
+        pos = self.p - 1
+        # ~ print("pos, sz: ", pos, self.sz)
+        if len(self[pos][1]) > 1:
+            "delete space and/or punctuation"
+            self[pos][1] = self[pos][1][:-1]
+        elif 2*pos == self.sz - 1:
+            "odd length, middle char, remove it"
+            self._unshift(pos)
+        else:
+            "must remove two chars"
+            if 2*pos > self.sz: 
+                "current arith needs reference in first half"
+                pos = self.sz - pos - 1
+            # ~ print(pos, self.sz - pos - 1)
+            self._unshift(pos)
+            self._unshift(self.sz - pos - 1)
+
     def _shift(self, pos):
         self.sz += 1
         for i in reversed(range(pos+1, self.sz)):
@@ -77,6 +99,15 @@ class Store(dict):
         self[pos] = '_'
         if pos <= self.p: 
             self.p += 1
+
+    def _unshift(self, pos):
+        # ~ print("unshift", pos, self._dump())
+        self.sz -= 1
+        for i in range(pos, self.sz):
+            # ~ print(i, self._dump())
+            self[i] = self[i+1]
+        if pos <= self.p: 
+            self.p -= 1
 
     def _dump(self):
         r = ''
@@ -114,6 +145,8 @@ if __name__ == "__main__":
             s.move(-1)
         elif ch == '>': 
             s.move(1)
+        elif ch == '!': 
+            s.delete()
         else:
             s.put(ch)
         print(s.writ())
