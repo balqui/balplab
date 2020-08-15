@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+
+<body onload="brython(1)">
+
+<label id="name"><h2>BalPLab</h2></label>
+<label id="info"><h3>Balqui's Palindroms Lab</h3></label>
+<br>
+<br>
+<label id="mo_s">Reglas: (1) No uses tildes. (2) No muevas el cursor del ratón
+ni hagas click. (3) Bloquea mayúsculas para obtenerlas. (4) Deja los retoques para el final, 
+en un editor de texto aparte al que copies el resultado.</label>
+<br>
+<br>
+<label id="mo_i">Rules: (1) Accent marks unsupported. (2) Mouse moving or clicking unsupported.
+(3) Lock capitals to get them. (4) Cut and paste to your text editor to finish up when done.</label>
+<br>
+<br>
+<br>
+<textarea autofocus id="inwork" autocomplete="off" placeholder="Add letters here or move with arrows, pon aqui letras o mueve con flechitas." col=36 rows=4></textarea>
+<br>
+<br>
+<textarea disabled id="outwork" autocomplete="off" placeholder="Aquí irás viendo el resultado, result shows up here." cols=60></textarea>
+<br>
+<br>
+<button id="back">Back</button>
+<button id="about">About...</button>
+
+
+<script type="text/python">
+from browser import document, alert # Brython in-browser support
+from store import Store
+
+about_str = """BalPLab:
+
+Using Brython to help the user to invent palindroms.
+A looooong-dreamed-of little project.
+
+Currently on Brython-3.8.9.
+
+José L Balcázar (balqui at GitHub), summer 2020"""
+
+arrow_codes = list(range(37, 41))
+
+st = Store()
+
+def about(ev):
+    alert(about_str)
+
+def back(ev):
+    alert("Back not yet implemented. Sorry.")
+
+def handlekey(ev):
+    "handle keypress event"
+    # ~ alert(str(ev.keyCode) + " at handle key by keypress")
+    if ev.keyCode != 8 and ev.keyCode not in arrow_codes:
+        r = st.put(chr(ev.keyCode))
+        document["outwork"].value = st.writ()
+        document["inwork"].value = chr(ev.keyCode)
+    # ~ else:
+        # ~ alert("keypress ignored")
+
+def handlemove(ev):
+    "handle move event"
+    # ~ alert(str(ev.keyCode) + " at handle move by keydown")
+    if ev.keyCode == 8:
+        alert("Deletion unsupported as yet.")
+    elif ev.keyCode in arrow_codes:
+        "wrong here, must transform into distance to update"
+        r = st.move(ev.keyCode)
+        # ~ alert("moving: " + str(ev.keyCode) + ", " + r)
+    # ~ else:
+        # ~ alert("keydown ignored")
+    
+def mouseused(ev):
+    alert("Don't use the mouse please.")
+
+# main program: 
+# bind buttons to processes and leave interaction for Brython to care for.
+
+document["inwork"].bind('click', mouseused)
+document["inwork"].bind('keypress', handlekey)
+document["inwork"].bind('keydown', handlemove)
+document['about'].bind('click', about)
+document['back'].bind('click', back)
+
+
+
+
+
+</script>
+</body>
+
+</html>
+

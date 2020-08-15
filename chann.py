@@ -1,4 +1,8 @@
-
+"""
+DEPRECATED. Position handled within store since mid august.
+History for undoing not yet implemented but will be handled
+somewhere else.
+"""
 from store import Store
     # ~ def put(self, pos, ch):
     # ~ def shift(self, pos):
