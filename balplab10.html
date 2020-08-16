@@ -84,12 +84,15 @@ def handlekey(ev):
         "did not manage to use the DEL key"
         st.delete()
         document["out"].value = st.writ()
+        document["in"].value = ''
     elif ev.keyCode == 60: 
         st.move(-1)
         document["out"].value = st.writ()
+        document["in"].value = ''
     elif ev.keyCode == 62: 
         st.move(1)
         document["out"].value = st.writ()
+        document["in"].value = ''
     else:
         st.put(chr(ev.keyCode))
         document["out"].value = st.writ()

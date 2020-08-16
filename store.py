@@ -83,10 +83,13 @@ class Store(dict):
         elif 2*pos == self.sz - 1:
             "odd length, middle char, remove it"
             self._unshift(pos)
+        elif 2*pos == self.sz - 2 or 2*pos == self.sz:
+            "even length, one of central chars, remove only one"
+            self._unshift(pos)
         else:
-            "must remove two chars"
+            "must remove two chars - NOT SURE p IS LEFT IN CORRECT PLACE"
             if 2*pos > self.sz: 
-                "current arith needs reference in first half"
+                "current arith needs reference in first half - case '==' covered above"
                 pos = self.sz - pos - 1
             # ~ print(pos, self.sz - pos - 1)
             self._unshift(pos)
