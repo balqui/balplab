@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+</head>
+
+<body onload="brython(1)">
+
+<label id="name"><h2>BalPLab</h2></label>
+<label id="info"><h3>Balqui's Palindroms Lab</h3></label>
+<br>
+<br>
+<textarea disabled id="out" autocomplete="off" 
+placeholder="Teclea sin más y aquí irás viendo el resultado." 
+cols=60></textarea>
+<br>
+<br>
+<button id="done">¡Listo!</button>
+<button id="about">Sobre...</button>
+<br>
+<br>
+<a id="instr" target="_blank" href="readme.html">Instrucciones</a>
+<br>
+<br>
+<br>
+<label id="ignore">Ignora esta cajita y cuanto pase dentro: </label>
+<input type="text" autofocus id="in" size='2'>
+
+
+<script type="text/python" src="balplab.py"></script>
+</body>
+
+</html>
+
