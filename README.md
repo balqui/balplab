@@ -17,7 +17,8 @@ Los habrás de gestionar a posteriori.
 2. No cliques con el ratón. Si lo haces por error, vuelve a
 clicar por la página hasta que la ventanita de texto cerca del 
 final de la página quede en foco (pero ignora todo lo que sale 
-en ella).
+en ella; es, en realidad, donde se capturan los eventos de tu
+teclado).
 
 3. Puedes moverte hacia la izquierda o la derecha por el 
 texto a medio construir con los símbolos '>' y '<'. Puedes
