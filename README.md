@@ -11,13 +11,13 @@ José L Balcázar (balqui at GitHub), summer 2020.
 Instrucciones:
 --------------
 
-1. Por ahora no está implementado el uso de tildes o acentos.
+1. Por ahora, no está implementado el uso de tildes o acentos.
 Los habrás de gestionar a posteriori.
 
 2. No cliques con el ratón. Si lo haces por error, vuelve a
 clicar por la página hasta que la ventanita de texto cerca del 
-final de la página quede en foco (pero ignora todo lo que sale 
-en ella; es, en realidad, donde se capturan los eventos de tu
+final de la página quede activa (pero ignora todo lo que sale 
+en ella; es, en realidad, donde se captura la actividad de tu
 teclado).
 
 3. Puedes moverte hacia la izquierda o la derecha por el 
@@ -32,13 +32,14 @@ e interrogaciones (excepto como primer carácter). Puedes
 borrar (con '=') los espacios extra que se añaden en esos 
 casos, si te conviene.
 
-5. El botón "Atrás" no está aún implementado en esta versión.
-
-6. Cuando hayas acabado, si clicas en el botón "¡Listo!", 
+5. Cuando hayas acabado, si clicas en el botón "¡Listo!", 
 aparecerá un _pop-up_ con el texto, desde el cual podrás 
 copiar y pegar en algún lugar que te convenga. Este 
 programa **no almacena** absolutamente **nada**. Si cierras 
 o recargas la página, no hay vuelta atrás.
 
-7. Para resetear, vuelve a cargar la página desde el navegador.
+6. Para resetear, vuelve a cargar la página desde el navegador.
+
+<!-- 7. El botón "Atrás" no está aún implementado en esta versión. -->
+
 
