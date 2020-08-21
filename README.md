@@ -1,5 +1,7 @@
 # BalPLab
 
+(Available for use at: https://www.cs.upc.edu/~balqui/balplab/)
+
 Using Brython to help the user to invent palindroms.
 
 A looooong-dreamed-of little project.
